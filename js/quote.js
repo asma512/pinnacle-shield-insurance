@@ -1,10 +1,22 @@
+let currentQuote = null;
+
 document.addEventListener('DOMContentLoaded', function() {
+    // --- 1. Selectors ---
+    const btnSave = document.getElementById('btnSave');
+    const btnReset = document.getElementById('btnReset');
+    const savedQuotesList = document.getElementById('savedQuotesList');
+    const savedQuotesSection = document.getElementById('savedQuotesSection');
+
     const quoteForm = document.getElementById('quoteForm');
     const typeRadios = document.querySelectorAll('input[name="insuranceType"]');
     const resultSection = document.getElementById('quoteResult');
     const premiumDisplay = document.getElementById('premiumDisplay');
 
-    // --- 1.3.6. Form Switching Logic ---
+    // --- 2. Initial Execution ---
+    // Load saved data immediately when the page opens
+    renderSavedQuotes();
+
+    // --- 3. Form Switching Logic ---
     typeRadios.forEach(function(radio) {
         radio.addEventListener('change', function() {
             // Hide all sections
@@ -22,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- 1.3.7 & 1.3.8. Validation and Calculation Trigger ---
+    // --- 4. Validation and Calculation Trigger ---
     quoteForm.addEventListener('submit', function(e) {
         e.preventDefault();
         clearErrors(quoteForm);
@@ -72,11 +84,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (isValid) {
+            currentQuote = resultData; // Capture state for the Save button
             displayResults(resultData);
         }
     });
-    
 
+    // --- 5. Save Logic (Independent Listener) ---
+    btnSave.addEventListener('click', () => {
+        if (!currentQuote) return;
+
+        const saved = JSON.parse(localStorage.getItem('insurance_quotes')) || [];
+        
+        const quoteToSave = {
+            ...currentQuote,
+            id: Date.now(),
+            dateSaved: new Date().toLocaleDateString()
+        };
+
+        saved.push(quoteToSave);
+        localStorage.setItem('insurance_quotes', JSON.stringify(saved));
+        
+        renderSavedQuotes(); 
+        alert("Quote saved successfully!");
+    });
+
+    // --- 6. Reset Logic (Independent Listener) ---
+    btnReset.addEventListener('click', () => {
+        quoteForm.reset();
+        resultSection.classList.add('d-none');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Trigger a change to reset visible fields to 'Auto'
+        document.getElementById('typeAuto').dispatchEvent(new Event('change'));
+        currentQuote = null; 
+    });
+
+    // --- 7. Helper Functions ---
 
     function showError(id, message) {
         const el = document.getElementById(id);
@@ -97,207 +139,73 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Validation Logic ---
     function validateAuto() {
         let valid = true;
-        
         const fullName = document.getElementById('fullName').value.trim();
         const age = document.getElementById('age').value;
         const zip = document.getElementById('zipCode').value.trim();
         const year = document.getElementById('vehicleYear').value;
         const model = document.getElementById('vehicleModel').value.trim();
 
-        // Full Name
-        if (!fullName) {
-            showError('fullName', 'Name is required');
-            valid = false;
-        } else if (!/^[a-zA-Z\s]+$/.test(fullName)) {
-            showError('fullName', 'Name can only contain letters');
+        if (!fullName || !/^[a-zA-Z\s]+$/.test(fullName)) {
+            showError('fullName', 'Valid name required');
             valid = false;
         }
-
-        // Age
-        if (!age) {
-            showError('age', 'Age is required');
-            valid = false;
-        } else if (isNaN(age) || age < 16 || age > 100) {
-            showError('age', 'Age must be between 16 and 100');
+        if (!age || isNaN(age) || age < 16 || age > 100) {
+            showError('age', 'Age must be 16-100');
             valid = false;
         }
-
-        // ZIP Code
-        if (!zip) {
-            showError('zipCode', 'ZIP code is required');
-            valid = false;
-        } else if (!/^\d{5}$/.test(zip)) {
-            showError('zipCode', 'ZIP code must be exactly 5 digits');
+        if (!/^\d{5}$/.test(zip)) {
+            showError('zipCode', '5-digit ZIP required');
             valid = false;
         }
-
-        // Vehicle Year
-        if (!year) {
-            showError('vehicleYear', 'Year is required');
-            valid = false;
-        } else if (isNaN(year) || year < 1990 || year > 2026) {
-            showError('vehicleYear', 'Year must be between 1990 and 2026');
+        if (!year || year < 1990 || year > 2026) {
+            showError('vehicleYear', 'Year must be 1990-2026');
             valid = false;
         }
-
-        // Vehicle Model
         if (!model) {
             showError('vehicleModel', 'Model is required');
             valid = false;
-        } else if (!/[A-Za-z]/.test(model)) {
-            showError('vehicleModel', 'Model must contain at least 1 letter');
-            valid = false;
         }
         if (!document.getElementById('vehicleMake').value) { showError('vehicleMake', 'Select a make'); valid = false; }
-
-        if (!document.getElementById('annualMileage').value) { showError('annualMileage', 'Select annual mileage'); valid = false; }
-        if (!document.getElementById('drivingRecord').value) { showError('drivingRecord', 'Select driving record'); valid = false; }
+        if (!document.getElementById('annualMileage').value) { showError('annualMileage', 'Select mileage'); valid = false; }
+        if (!document.getElementById('drivingRecord').value) { showError('drivingRecord', 'Select record'); valid = false; }
 
         return valid;
     }
 
     function validateHome() {
         let valid = true;
-
         const fullName = document.getElementById('homeFullName').value.trim();
         const age = document.getElementById('homeAge').value;
         const zip = document.getElementById('homeZip').value.trim();
         const homeValue = document.getElementById('homeValue').value;
         const yearBuilt = document.getElementById('yearBuilt').value;
         const sqft = document.getElementById('sqFootage').value;
-        const constructionType = document.getElementById('constructionType').value;
 
-        // Full Name
-        if (!fullName) {
-            showError('homeFullName', 'Full name is required');
-            valid = false;
-        } else if (fullName.length < 2 || !/^[A-Za-z\s]+$/.test(fullName)) {
-            showError('homeFullName', 'Must be at least 2 letters and only alphabetic');
-            valid = false;
-        }
-
-        // Age
-        if (!age) {
-            showError('homeAge', 'Age is required');
-            valid = false;
-        } else if (isNaN(age) || age < 18 || age > 100) {
-            showError('homeAge', 'Age must be 18–100');
-            valid = false;
-        }
-
-        // ZIP Code
-        if (!zip) {
-            showError('homeZip', 'ZIP code is required');
-            valid = false;
-        } else if (!/^\d{5}$/.test(zip)) {
-            showError('homeZip', 'ZIP code must be exactly 5 digits');
-            valid = false;
-        }
-
-        // Home Value
-        if (!homeValue) {
-            showError('homeValue', 'Home value is required');
-            valid = false;
-        } else if (homeValue < 50000) {
-            showError('homeValue', 'Minimum home value is $50,000');
-            valid = false;
-        }
-
-        // Year Built
-        if (!yearBuilt) {
-            showError('yearBuilt', 'Year built is required');
-            valid = false;
-        } else if (isNaN(yearBuilt) || yearBuilt < 1900 || yearBuilt > 2026) {
-            showError('yearBuilt', 'Year must be 1900–2026');
-            valid = false;
-        }
-
-        // Square Footage
-        if (!sqft) {
-            showError('sqFootage', 'Square footage is required');
-            valid = false;
-        } else if (isNaN(sqft) || sqft < 500 || sqft > 10000) {
-            showError('sqFootage', 'Square footage must be 500–10,000');
-            valid = false;
-        }
-
-        // Construction Type
-        if (!constructionType) {
-            showError('constructionType', 'Please select a construction type');
-            valid = false;
-        }
+        if (!fullName || !/^[A-Za-z\s]+$/.test(fullName)) { showError('homeFullName', 'Valid name required'); valid = false; }
+        if (!age || age < 18 || age > 100) { showError('homeAge', 'Age must be 18–100'); valid = false; }
+        if (!/^\d{5}$/.test(zip)) { showError('homeZip', '5-digit ZIP required'); valid = false; }
+        if (!homeValue || homeValue < 50000) { showError('homeValue', 'Min value $50,000'); valid = false; }
+        if (!yearBuilt || yearBuilt < 1900 || yearBuilt > 2026) { showError('yearBuilt', 'Year 1900–2026'); valid = false; }
+        if (!sqft || sqft < 500 || sqft > 10000) { showError('sqFootage', '500–10,000 sqft'); valid = false; }
+        if (!document.getElementById('constructionType').value) { showError('constructionType', 'Select type'); valid = false; }
 
         return valid;
     }
 
     function validateLife() {
         let valid = true;
-
         const fullName = document.getElementById('lifeFullName').value.trim();
         const age = document.getElementById('lifeAge').value;
         const zip = document.getElementById('lifeZip').value.trim();
-        const gender = document.getElementById('gender').value;
-        const coverageAmount = document.getElementById('coverageAmount').value;
-        const exercise = document.getElementById('exercise').value;
-        const smoker = document.querySelector('input[name="smoker"]:checked');
-        const coverageLevel = document.querySelector('input[name="lifeCoverage"]:checked');
 
-        // Full Name
-        if (!fullName) {
-            showError('lifeFullName', 'Full name is required');
-            valid = false;
-        } else if (fullName.length < 2 || !/^[A-Za-z\s]+$/.test(fullName)) {
-            showError('lifeFullName', 'Must be at least 2 letters and only contain letters');
-            valid = false;
-        }
-
-        // Age
-        if (!age) {
-            showError('lifeAge', 'Age is required');
-            valid = false;
-        } else if (isNaN(age) || age < 18 || age > 85) {
-            showError('lifeAge', 'Age must be 18–85');
-            valid = false;
-        }
-
-        // ZIP Code
-        if (!zip) {
-            showError('lifeZip', 'ZIP code is required');
-            valid = false;
-        } else if (!/^\d{5}$/.test(zip)) {
-            showError('lifeZip', 'ZIP code must be exactly 5 digits');
-            valid = false;
-        }
-
-        // Gender
-        if (!gender) {
-            showError('gender', 'Gender is required');
-            valid = false;
-        }
-
-        // Smoker
-        if (!smoker) {
-            showError('smokerYes', 'Please select smoker option');
-            valid = false;
-        }
-
-        // Coverage Amount
-        if (!coverageAmount) {
-            showError('coverageAmount', 'Coverage amount is required');
-            valid = false;
-        }
-
-        // Exercise Frequency
-        if (!exercise) {
-            showError('exercise', 'Exercise frequency is required');
-            valid = false;
-        }
-
-        // Coverage Level
-        if (!coverageLevel) {
-            showError('lifeBasic', 'Coverage level is required');
-            valid = false;
-        }
+        if (!fullName || !/^[A-Za-z\s]+$/.test(fullName)) { showError('lifeFullName', 'Valid name required'); valid = false; }
+        if (!age || age < 18 || age > 85) { showError('lifeAge', 'Age 18–85'); valid = false; }
+        if (!/^\d{5}$/.test(zip)) { showError('lifeZip', '5-digit ZIP required'); valid = false; }
+        if (!document.getElementById('gender').value) { showError('gender', 'Gender required'); valid = false; }
+        if (!document.querySelector('input[name="smoker"]:checked')) { showError('smokerYes', 'Select smoker option'); valid = false; }
+        if (!document.getElementById('coverageAmount').value) { showError('coverageAmount', 'Amount required'); valid = false; }
+        if (!document.getElementById('exercise').value) { showError('exercise', 'Exercise required'); valid = false; }
+        if (!document.querySelector('input[name="lifeCoverage"]:checked')) { showError('lifeBasic', 'Level required'); valid = false; }
 
         return valid;
     }
@@ -356,31 +264,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return rate * { 'basic': 0.8, 'standard': 1.0, 'premium': 1.4 }[coverage];
     }
 
-
-function addBreakdownRow(tbody, factor, userValue, impact) {
-    const row = document.createElement('tr');
-    
-    const tdFactor = document.createElement('td');
-    tdFactor.textContent = factor;
-    
-    const tdValue = document.createElement('td');
-    tdValue.textContent = userValue;
-    
-    const tdImpact = document.createElement('td');
-    tdImpact.textContent = impact;
-
-    row.appendChild(tdFactor);
-    row.appendChild(tdValue);
-    row.appendChild(tdImpact);
-    tbody.appendChild(row);
-}
-
-/**
-     * Main function to update the DOM with calculation results
-     */
     function displayResults(data) {
         const tbody = document.querySelector('#breakdownTable tbody');
-        tbody.innerHTML = ''; // Clear existing rows
+        tbody.innerHTML = ''; 
 
         document.getElementById('resName').textContent = data.name;
         document.getElementById('resType').textContent = data.type;
@@ -389,13 +275,10 @@ function addBreakdownRow(tbody, factor, userValue, impact) {
 
         data.breakdown.forEach(item => {
             const row = document.createElement('tr');
-            
             const tdFactor = document.createElement('td');
             tdFactor.textContent = item.f;
-            
             const tdInfo = document.createElement('td');
-            tdInfo.textContent = item.v; // Uses textContent to prevent XSS
-            
+            tdInfo.textContent = item.v; 
             const tdImpact = document.createElement('td');
             tdImpact.textContent = item.i;
 
@@ -407,12 +290,37 @@ function addBreakdownRow(tbody, factor, userValue, impact) {
         resultSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Reset Form and UI
-    btnReset.addEventListener('click', () => {
-        quoteForm.reset();
-        resultSection.classList.add('d-none');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        // Trigger default field view (Auto)
-        document.getElementById('typeAuto').dispatchEvent(new Event('change'));
-    });
+    function renderSavedQuotes() {
+        const saved = JSON.parse(localStorage.getItem('insurance_quotes')) || [];
+        if (!savedQuotesList || !savedQuotesSection) return;
+
+        if (saved.length > 0) {
+            savedQuotesSection.classList.remove('d-none');
+            savedQuotesList.innerHTML = saved.map(quote => `
+                <div class="card mb-2 shadow-sm border-start border-4 border-success">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>${quote.type} Insurance</strong> - ${quote.name} <br>
+                            <small class="text-muted">
+                                Monthly: $${quote.monthly.toFixed(2)} | 
+                                Annual: $${(quote.monthly * 12).toFixed(2)} | 
+                                Saved: ${quote.dateSaved}
+                            </small>
+                        </div>
+                        <button class="btn btn-outline-danger btn-sm" onclick="deleteQuote(${quote.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        } else {
+            savedQuotesSection.classList.add('d-none');
+        }
+    }
+
+    // Global delete function
+    window.deleteQuote = function(id) {
+        let saved = JSON.parse(localStorage.getItem('insurance_quotes')) || [];
+        saved = saved.filter(q => q.id !== id);
+        localStorage.setItem('insurance_quotes', JSON.stringify(saved));
+        renderSavedQuotes();
+    };
 });
