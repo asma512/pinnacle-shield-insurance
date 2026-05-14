@@ -145,29 +145,54 @@ document.addEventListener('DOMContentLoaded', function() {
         const year = document.getElementById('vehicleYear').value;
         const model = document.getElementById('vehicleModel').value.trim();
 
-        if (!fullName || !/^[a-zA-Z\s]+$/.test(fullName)) {
-            showError('fullName', 'Valid name required');
+        // Full Name
+        if (!fullName) {
+            showError('fullName', 'Name is required');
+            valid = false;
+        } else if (!/^[a-zA-Z\s]+$/.test(fullName)) {
+            showError('fullName', 'Name can only contain letters');
             valid = false;
         }
-        if (!age || isNaN(age) || age < 16 || age > 100) {
-            showError('age', 'Age must be 16-100');
+
+        // Age
+        if (!age) {
+            showError('age', 'Age is required');
+            valid = false;
+        } else if (isNaN(age) || age < 16 || age > 100) {
+            showError('age', 'Age must be between 16 and 100');
             valid = false;
         }
-        if (!/^\d{5}$/.test(zip)) {
-            showError('zipCode', '5-digit ZIP required');
+
+        // ZIP Code
+        if (!zip) {
+            showError('zipCode', 'ZIP code is required');
+            valid = false;
+        } else if (!/^\d{5}$/.test(zip)) {
+            showError('zipCode', 'ZIP code must be exactly 5 digits');
             valid = false;
         }
-        if (!year || year < 1990 || year > 2026) {
-            showError('vehicleYear', 'Year must be 1990-2026');
+
+        // Vehicle Year
+        if (!year) {
+            showError('vehicleYear', 'Year is required');
+            valid = false;
+        } else if (isNaN(year) || year < 1990 || year > 2026) {
+            showError('vehicleYear', 'Year must be between 1990 and 2026');
             valid = false;
         }
+
+        // Vehicle Model
         if (!model) {
             showError('vehicleModel', 'Model is required');
             valid = false;
+        } else if (!/[A-Za-z]/.test(model)) {
+            showError('vehicleModel', 'Model must contain at least 1 letter');
+            valid = false;
         }
         if (!document.getElementById('vehicleMake').value) { showError('vehicleMake', 'Select a make'); valid = false; }
-        if (!document.getElementById('annualMileage').value) { showError('annualMileage', 'Select mileage'); valid = false; }
-        if (!document.getElementById('drivingRecord').value) { showError('drivingRecord', 'Select record'); valid = false; }
+        if (!document.getElementById('annualMileage').value) { showError('annualMileage', 'Select annual mileage'); valid = false; }
+        if (!document.getElementById('drivingRecord').value) { showError('drivingRecord', 'Select driving record'); valid = false; }
+
 
         return valid;
     }
@@ -181,12 +206,66 @@ document.addEventListener('DOMContentLoaded', function() {
         const yearBuilt = document.getElementById('yearBuilt').value;
         const sqft = document.getElementById('sqFootage').value;
 
-        if (!fullName || !/^[A-Za-z\s]+$/.test(fullName)) { showError('homeFullName', 'Valid name required'); valid = false; }
-        if (!age || age < 18 || age > 100) { showError('homeAge', 'Age must be 18–100'); valid = false; }
-        if (!/^\d{5}$/.test(zip)) { showError('homeZip', '5-digit ZIP required'); valid = false; }
-        if (!homeValue || homeValue < 50000) { showError('homeValue', 'Min value $50,000'); valid = false; }
-        if (!yearBuilt || yearBuilt < 1900 || yearBuilt > 2026) { showError('yearBuilt', 'Year 1900–2026'); valid = false; }
-        if (!sqft || sqft < 500 || sqft > 10000) { showError('sqFootage', '500–10,000 sqft'); valid = false; }
+        // Full Name
+        if (!fullName) {
+            showError('homeFullName', 'Full name is required');
+            valid = false;
+        } else if (fullName.length < 2 || !/^[A-Za-z\s]+$/.test(fullName)) {
+            showError('homeFullName', 'Must be at least 2 letters and only alphabetic');
+            valid = false;
+        }
+
+        // Age
+        if (!age) {
+            showError('homeAge', 'Age is required');
+            valid = false;
+        } else if (isNaN(age) || age < 18 || age > 100) {
+            showError('homeAge', 'Age must be 18–100');
+            valid = false;
+        }
+
+        // ZIP Code
+        if (!zip) {
+            showError('homeZip', 'ZIP code is required');
+            valid = false;
+        } else if (!/^\d{5}$/.test(zip)) {
+            showError('homeZip', 'ZIP code must be exactly 5 digits');
+            valid = false;
+        }
+
+        // Home Value
+        if (!homeValue) {
+            showError('homeValue', 'Home value is required');
+            valid = false;
+        } else if (homeValue < 50000) {
+            showError('homeValue', 'Minimum home value is $50,000');
+            valid = false;
+        }
+
+        // Year Built
+        if (!yearBuilt) {
+            showError('yearBuilt', 'Year built is required');
+            valid = false;
+        } else if (isNaN(yearBuilt) || yearBuilt < 1900 || yearBuilt > 2026) {
+            showError('yearBuilt', 'Year must be 1900–2026');
+            valid = false;
+        }
+
+        // Square Footage
+        if (!sqft) {
+            showError('sqFootage', 'Square footage is required');
+            valid = false;
+        } else if (isNaN(sqft) || sqft < 500 || sqft > 10000) {
+            showError('sqFootage', 'Square footage must be 500–10,000');
+            valid = false;
+        }
+
+        // Construction Type
+        if (!constructionType) {
+            showError('constructionType', 'Please select a construction type');
+            valid = false;
+        }
+
         if (!document.getElementById('constructionType').value) { showError('constructionType', 'Select type'); valid = false; }
 
         return valid;
@@ -198,9 +277,32 @@ document.addEventListener('DOMContentLoaded', function() {
         const age = document.getElementById('lifeAge').value;
         const zip = document.getElementById('lifeZip').value.trim();
 
-        if (!fullName || !/^[A-Za-z\s]+$/.test(fullName)) { showError('lifeFullName', 'Valid name required'); valid = false; }
-        if (!age || age < 18 || age > 85) { showError('lifeAge', 'Age 18–85'); valid = false; }
-        if (!/^\d{5}$/.test(zip)) { showError('lifeZip', '5-digit ZIP required'); valid = false; }
+         // Full Name
+        if (!fullName) {
+            showError('lifeFullName', 'Full name is required');
+            valid = false;
+        } else if (fullName.length < 2 || !/^[A-Za-z\s]+$/.test(fullName)) {
+            showError('lifeFullName', 'Must be at least 2 letters and only contain letters');
+            valid = false;
+        }
+
+        // Age
+        if (!age) {
+            showError('lifeAge', 'Age is required');
+            valid = false;
+        } else if (isNaN(age) || age < 18 || age > 85) {
+            showError('lifeAge', 'Age must be 18–85');
+            valid = false;
+        }
+
+        // ZIP Code
+        if (!zip) {
+            showError('lifeZip', 'ZIP code is required');
+            valid = false;
+        } else if (!/^\d{5}$/.test(zip)) {
+            showError('lifeZip', 'ZIP code must be exactly 5 digits');
+            valid = false;
+        }
         if (!document.getElementById('gender').value) { showError('gender', 'Gender required'); valid = false; }
         if (!document.querySelector('input[name="smoker"]:checked')) { showError('smokerYes', 'Select smoker option'); valid = false; }
         if (!document.getElementById('coverageAmount').value) { showError('coverageAmount', 'Amount required'); valid = false; }
