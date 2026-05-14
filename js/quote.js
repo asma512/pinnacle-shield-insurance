@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const typeRadios = document.querySelectorAll('input[name="insuranceType"]');
     const resultSection = document.getElementById('quoteResult');
     const premiumDisplay = document.getElementById('premiumDisplay');
-
+    const step2Container = document.getElementById('step2Container');
+ 
     // --- 2. Initial Execution ---
     // Load saved data immediately when the page opens
     renderSavedQuotes();
@@ -19,16 +20,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 3. Form Switching Logic ---
     typeRadios.forEach(function(radio) {
         radio.addEventListener('change', function() {
-            // Hide all sections
-            document.getElementById('autoFields').classList.add('d-none');
-            document.getElementById('homeFields').classList.add('d-none');
-            document.getElementById('lifeFields').classList.add('d-none');
-
-            // Show selected section
-            const selected = this.value + 'Fields';
-            document.getElementById(selected).classList.remove('d-none');
             
-            // Clear previous errors and results
+            step2Container.classList.remove('hidden');
+
+            // 1. Define all sections
+            const sections = ['autoFields', 'homeFields', 'lifeFields'];
+            const selectedSectionId = this.value + 'Fields';
+
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (id === selectedSectionId) {
+                    // Show and Enable inputs
+                    section.classList.remove('hidden');
+                    toggleInputs(section, false); 
+                } else {
+                    // Hide and Disable inputs
+                    section.classList.add('hidden');
+                    toggleInputs(section, true);
+                }
+            });
+            
             clearErrors(quoteForm);
             resultSection.classList.add('d-none');
         });
@@ -53,34 +64,156 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedType === 'auto') {
             isValid = validateAuto();
             if (isValid) {
+                // 1. Get Values
+                const age = parseInt(document.getElementById('age').value);
+                const vYear = parseInt(document.getElementById('vehicleYear').value);
+                const vAge = 2026 - vYear; // Current year is 2026
+                const mileage = document.getElementById('annualMileage').value;
+                const record = document.getElementById('drivingRecord').value;
+                const coverage = document.querySelector('input[name="autoCoverage"]:checked').value;
+
+                // 2. Logic for specific "Impact" messages (multipliers)
+                const ageImpact = age < 25 ? 'x1.5' : (age > 65 ? 'x1.3' : 'x1.00');
+                
+                const vAgeImpact = vAge < 3 ? 'x1.3' : (vAge > 10 ? 'x0.80' : 'x1.00');
+                
+                const mileageMap = {
+                    'Under 5,000': 'x0.80',
+                    '5,000–10,000': 'x1.00',
+                    '10,001–15,000': 'x1.1',
+                    '15,001–20,000': 'x1.3',
+                    'Over 20,000': 'x1.5'
+                };
+                
+                const recordMap = {
+                    'Clean': 'x1.00',
+                    '1 Ticket': 'x1.2',
+                    '2+ Tickets': 'x1.5',
+                    'Accident in Last 3 Years': 'x1.8'
+                };
+
+                const coverageMap = {
+                    'basic': 'x0.80',
+                    'standard': 'x1.00',
+                    'premium': 'x1.4'
+                };
+
+                // 3. Construct the breakdown to match image_792b96.png
                 resultData.name = document.getElementById('fullName').value;
-                resultData.monthly = calculateAuto();
+                resultData.monthly = calculateAuto(); // Your math function
                 resultData.breakdown = [
-                    { f: 'Age', v: document.getElementById('age').value, i: 'Age-based scaling' },
-                    { f: 'Vehicle', v: document.getElementById('vehicleModel').value, i: 'Model year impact' },
-                    { f: 'Record', v: document.getElementById('drivingRecord').value, i: 'Safety history' }
+                    { f: 'Base monthly rate', v: '$75.00', i: 'Starting rate' },
+                    { f: 'Age factor', v: `${age} years`, i: ageImpact },
+                    { f: 'Vehicle age factor', v: `${vAge} years old`, i: vAgeImpact },
+                    { f: 'Mileage factor', v: mileage, i: mileageMap[mileage] || 'x1.00' },
+                    { f: 'Driving record', v: record, i: recordMap[record] || 'x1.00' },
+                    { f: 'Coverage level', v: coverage.charAt(0).toUpperCase() + coverage.slice(1), i: coverageMap[coverage] }
                 ];
             }
         } else if (selectedType === 'home') {
             isValid = validateHome();
             if (isValid) {
-                resultData.name = document.getElementById('homeFullName').value;
-                resultData.monthly = calculateHome();
-                resultData.breakdown = [
-                    { f: 'Home Value', v: `$${document.getElementById('homeValue').value}`, i: 'Asset value' },
-                    { f: 'Structure', v: document.getElementById('constructionType').value, i: 'Material durability' }
-                ];
+                // 1. Get Values
+            const hValue = parseFloat(document.getElementById('homeValue').value) || 0;
+            const yearBuilt = parseInt(document.getElementById('yearBuilt').value);
+            const sqFt = parseFloat(document.getElementById('sqFootage').value) || 0;
+            const construction = document.getElementById('constructionType').value;
+            const security = document.getElementById('securitySystem').checked;
+            const sprinklers = document.getElementById('fireSprinklers').checked;
+            const coverage = document.querySelector('input[name="homeCoverage"]:checked').value;
+
+            // 2. Logic for specific "Impact" messages (multipliers and additions)
+            const baseMonthly = (hValue * 0.003) / 12;
+
+            const yearImpact = yearBuilt < 1970 ? 'x1.4' : (yearBuilt <= 1999 ? 'x1.1' : 'x1.00');
+            
+            const constructionMap = {
+                'Wood Frame': 'x1.2',
+                'Brick': 'x1.0',
+                'Concrete': 'x0.9',
+                'Steel': 'x0.85'
+            };
+
+            const securityImpact = security ? 'x0.95' : 'x1.00';
+            const sprinklerImpact = sprinklers ? 'x0.92' : 'x1.00';
+
+            const coverageMap = {
+                'basic': 'x0.80',
+                'standard': 'x1.00',
+                'premium': 'x1.4'
+            };
+
+            // 3. Construct the breakdown to match image_792b96.png
+            resultData.name = document.getElementById('homeFullName').value;
+            resultData.monthly = calculateHome(); // Your math function
+            resultData.breakdown = [
+                { f: 'Base monthly rate', v: `$${baseMonthly.toFixed(2)}`, i: 'Value-based rate' },
+                { f: 'Year built factor', v: `Built in ${yearBuilt}`, i: yearImpact },
+                { f: 'Construction factor', v: construction, i: constructionMap[construction] || 'x1.00' },
+                { f: 'Size adjustment', v: `${sqFt} sq ft`, i: `+$${(sqFt * 0.01).toFixed(2)}/mo` },
+                { f: 'Security discount', v: security ? 'Installed' : 'None', i: securityImpact },
+                { f: 'Sprinkler discount', v: sprinklers ? 'Installed' : 'None', i: sprinklerImpact },
+                { f: 'Coverage level', v: coverage.charAt(0).toUpperCase() + coverage.slice(1), i: coverageMap[coverage] }
+            ];
             }
         } else if (selectedType === 'life') {
             isValid = validateLife();
             if (isValid) {
-                resultData.name = document.getElementById('lifeFullName').value;
-                resultData.monthly = calculateLife();
-                resultData.breakdown = [
-                    { f: 'Coverage', v: document.getElementById('coverageAmount').value, i: 'Benefit amount' },
-                    { f: 'Health', v: document.querySelector('input[name="smoker"]:checked').value === 'yes' ? 'Smoker' : 'Non-Smoker', i: 'Risk profile' }
-                ];
-            }
+            // 1. Get Values
+            const rawCoverage = document.getElementById('coverageAmount').value; // e.g., "$250,000"
+            const coverageValue = parseFloat(rawCoverage.replace(/[\$,]/g, '')) || 0;
+            const age = parseInt(document.getElementById('lifeAge').value);
+            const gender = document.getElementById('gender').value;
+            const exercise = document.getElementById('exercise').value;
+            const smoker = document.querySelector('input[name="smoker"]:checked').value;
+            const preExisting = document.getElementById('preExisting').checked;
+            const coverageLevel = document.querySelector('input[name="lifeCoverage"]:checked').value;
+
+            // 2. Logic for specific "Impact" messages (multipliers)
+            const baseMonthly = (coverageValue * 0.0005) / 12;
+
+            // Age Multiplier
+            let ageImpact = 'x1.0';
+            if (age >= 31 && age <= 45) ageImpact = 'x1.5';
+            else if (age >= 46 && age <= 60) ageImpact = 'x2.5';
+            else if (age > 60) ageImpact = 'x4.0';
+
+            const smokerImpact = smoker === 'yes' ? 'x2.0' : 'x1.0';
+
+            const exerciseMap = {
+                'Rarely': 'x1.3',
+                '1–2 times/week': 'x1.1',
+                '3–4 times/week': 'x1.0',
+                '5+ times/week': 'x0.9'
+            };
+
+            const preExistingImpact = preExisting ? 'x1.5' : 'x1.0';
+
+            const genderMap = {
+                'Male': 'x1.1',
+                'Female': 'x1.0',
+                'Non-binary': 'x1.05'
+            };
+
+            const levelMap = {
+                'basic': 'x0.8',
+                'standard': 'x1.0',
+                'premium': 'x1.4'
+            };
+
+            // 3. Construct the breakdown to match image_792b96.png
+            resultData.name = document.getElementById('lifeFullName').value;
+            resultData.monthly = calculateLife(); 
+            resultData.breakdown = [
+                { f: 'Base monthly rate', v: `$${baseMonthly.toFixed(2)}`, i: 'Coverage-based rate' },
+                { f: 'Age factor', v: `${age} years`, i: ageImpact },
+                { f: 'Smoker factor', v: smoker.charAt(0).toUpperCase() + smoker.slice(1), i: smokerImpact },
+                { f: 'Exercise frequency', v: exercise, i: exerciseMap[exercise] || 'x1.0' },
+                { f: 'Health history', v: preExisting ? 'Conditions present' : 'None reported', i: preExistingImpact },
+                { f: 'Gender factor', v: gender, i: genderMap[gender] || 'x1.0' },
+                { f: 'Coverage level', v: coverageLevel.charAt(0).toUpperCase() + coverageLevel.slice(1), i: levelMap[coverageLevel] }
+            ];
+        }
         }
 
         if (isValid) {
@@ -118,7 +251,19 @@ document.addEventListener('DOMContentLoaded', function() {
         currentQuote = null; 
     });
 
+    document.getElementById('btnPrint').addEventListener('click', function() {
+        window.print();
+    });
+
     // --- 7. Helper Functions ---
+
+    // Helper function to enable/disable inputs inside a div
+    function toggleInputs(container, isDisabled) {
+        const inputs = container.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.disabled = isDisabled;
+        });
+    }
 
     function showError(id, message) {
         const el = document.getElementById(id);

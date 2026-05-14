@@ -43,7 +43,7 @@
                     <label class="form-label fw-bold mb-3">Step 1: Select Insurance Type</label>
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
-                            <input type="radio" class="btn-check" name="insuranceType" id="typeAuto" value="auto" checked autocomplete="off">
+                            <input type="radio" class="btn-check" name="insuranceType" id="typeAuto" value="auto" autocomplete="off">
                             <label class="btn btn-outline-primary w-100 py-3" for="typeAuto">
                                 <span class="fs-3 d-block">🚗</span> Auto Insurance
                             </label>
@@ -61,9 +61,11 @@
                             </label>
                         </div>
                     </div>
-                    <hr class="my-4">
 
+                    <div id="step2Container" class="hidden">
+                    <hr class="my-4">
                     <!-- Step 2: Dynamic Form Fields -->
+                    
                     <label class="form-label fw-bold mb-3">Step 2: Enter Your Details</label>
                     <!-- Auto Insurance Fields -->
                     <div id="autoFields">
@@ -149,7 +151,7 @@
                     </div>
 
                     <!-- Home Insurance Fields  -->
-                    <div id="homeFields" class="d-none">
+                    <div id="homeFields" class="hidden">
                         <h5 class="mb-3 text-primary">Home Insurance Details</h5>
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -226,7 +228,7 @@
                     </div>
 
                     <!-- Life Insurance Fields-->
-                    <div id="lifeFields" class="d-none">
+                    <div id="lifeFields" class="hidden">
                         <h5 class="mb-3 text-primary">Life Insurance Details</h5>
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -317,6 +319,7 @@
                     <div class="mt-5">
                         <button type="submit" class="btn btn-primary btn-lg w-100">Calculate My Quote</button>
                     </div>
+                </div>
                 </form>
             </div>
         </div>
@@ -359,6 +362,7 @@
 
             <div class="text-center mt-4">
                 <button type="button" id="btnSave" class="btn btn-success">Save Quote</button>
+                <button type="button" id="btnPrint" class="btn btn-primary">Print Quote</button>
                 <button type="button" id="btnReset" class="btn btn-outline-secondary">Get Another Quote</button>
             </div>
         </div>
@@ -386,7 +390,6 @@
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Custom JS -->
-    <script src="js/main.js"></script>
     <script src="js/quote.js"></script>
 </body>
 </html>
