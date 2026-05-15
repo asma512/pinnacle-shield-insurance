@@ -1,3 +1,4 @@
+
 /* CSS Reset */
 *,
 *::before,
@@ -45,13 +46,17 @@ body {
     /* Adjusts top space like the About page */
 }
 
-/* Media Query for mobile spacing */
+/* Tablet */
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 60px 20px;
-    }
-
-    .display-3 {
-        font-size: 2.5rem;
-    }
+.hero h1 {
+font-size: 1.8rem;
+}
+/* ... additional rules ... */
+}
+/* Mobile */
+@media (max-width: 480px) {
+.hero {
+padding: 30px 15px;
+}
+/* ... additional rules ... */
 }
