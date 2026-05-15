@@ -10,13 +10,25 @@ Visit the live site: **[Pinnacle Shield Insurance](https://asma512.github.io/pin
 
 ## ✨ Features
 
-- **Responsive Design** - Fully optimized for desktop, tablet, and mobile devices
-- **Multi-Page Navigation** - Seamless navigation across Home, About, Services, and Contact pages
-- **Service Showcase** - Detailed insurance product offerings with clear descriptions
-- **Interactive Contact Form** - User-friendly form for inquiries and support requests
-- **Professional Branding** - Consistent visual design with company branding throughout
-- **Fast & Lightweight** - No framework dependencies, pure vanilla JavaScript
-- **Accessibility** - Semantic HTML structure for better accessibility and SEO
+### 🏗️ HTML Components
+- **Semantic HTML5 Structure** - Proper use of `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>` for better SEO and accessibility
+- **Multi-Page Architecture** - Separate pages for Home, About, Services, and Contact with consistent navigation
+- **Responsive Forms** - Contact form with input validation and user-friendly labels
+- **Structured Content** - Organized product listings and service descriptions using semantic elements
+
+### 🎨 CSS Components
+- **Responsive Design** - Mobile-first approach with media queries for tablet and desktop views
+- **Flexbox & Grid Layouts** - Modern layout techniques for flexible, scalable page structure
+- **Custom Styling** - Professional color schemes, typography, and spacing without frameworks
+- **Smooth Animations** - Hover effects, transitions, and interactive visual feedback for better UX
+- **CSS Variables** - Maintainable code with reusable color and font variables
+
+### ⚙️ JavaScript Functionality
+- **Dynamic Navigation** - Active page highlighting and smooth menu interactions
+- **Form Validation** - Client-side validation for user inputs with error messaging
+- **DOM Manipulation** - Dynamic content updates without page refresh
+- **Event Handling** - Click, submit, and input events for interactive features
+- **Local Storage** - Optional form data persistence for better user experience
 
 ---
 
