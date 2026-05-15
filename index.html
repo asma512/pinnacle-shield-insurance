@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinnacle Shield Insurance | Home</title>
     <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+
+<body class="bg-light">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="index.html">Pinnacle Shield Insurance</a>
+                <a class="navbar-brand" href="index.html">🛡️ Pinnacle Shield Insurance</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -31,79 +34,140 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero-section text-center d-flex align-items-center">
             <div class="container">
                 <h1 class="display-3 fw-bold">Protect What Matters Most</h1>
-                <p class="lead">Get personalized auto, home, life insurance quotes in minutes. Trusted coverage,transparent pricing, no surprises.</p>
+                <p class="lead">Get personalized auto, home, life insurance quotes in minutes. Trusted
+                    coverage,transparent pricing, no surprises.</p>
                 <a href="quote.html" class="btn btn-warning btn-lg">Get Your Free Quote</a>
             </div>
         </section>
 
         <!-- Why Choose Us -->
-        <section class="py-5 bg-light">
+        <section id="why-choose-us" class="why-choose-us py-5 bg-white">
             <div class="container">
                 <h2 class="text-center mb-5">Why Choose Us</h2>
-                <div class="row g-4">
+                <div class="row g-4 text-center">
+
+                    <!-- Fast Quotes -->
                     <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body text-center">
-                                <h3 class="h5">Fast Quotes</h3>
-                                <p class="card-text">Get an accurate insurance quote in under 5 minutes. Ourstreamlined process asks only what's needed - no lengthly applications. </p>
+                        <div class="card choose-card h-100 shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <div class="fs-1 mb-3">⚡</div>
+                                <h3 class="h5 card-title">Fast Quotes</h3>
+                                <p class="card-text text-muted">Get an accurate insurance quote in under 5 minutes. Our
+                                    streamlined process asks only what's needed—no lengthy applications.</p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Trusted Coverage -->
                     <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body text-center">
-                                <h3 class="h5">Trusted Coverage</h3>
-                                <p class="card-text"> With over 40 years of experience, we've protected miilions of families. Our coverage plans are designed for real life situations.</p>
+                        <div class="card choose-card h-100 shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <div class="fs-1 mb-3">🛡️</div>
+                                <h3 class="h5 card-title">Trusted Coverage</h3>
+                                <p class="card-text text-muted">With over 40 years of experience, we've protected
+                                    millions of families. Our coverage plans are designed for real-life situations.</p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- 24/7 Support -->
                     <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body text-center">
-                                <h3 class="h5">24/7 Support</h3>
-                                <p class="card-text">Our dedicated support team is available around the clock. Whether it's a claim or a question, we're here when you need us.</p>
+                        <div class="card choose-card h-100 shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <div class="fs-1 mb-3">📞</div>
+                                <h3 class="h5 card-title">24/7 Support</h3>
+                                <p class="card-text text-muted">Our dedicated support team is available around the
+                                    clock. Whether it's a claim or a question, we're here when you need us.</p>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
         <!-- Insurance Types -->
-        <section class="py-5">
+        <section id="insurance-types" class="py-5 bg-light">
             <div class="container">
                 <h2 class="text-center mb-5">Our Insurance Types</h2>
-                <div class="row text-center">
-                    <div class="col-md-4 mb-4">
-                        <h4>Auto</h4>
-                        <p>Comprehensive protection for your vehicles on and off the road.</p>
+                <div class="row g-4 text-center">
+                    <!-- Auto Insurance -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <div class="fs-1 mb-3">🚗</div>
+                                <h4 class="h5 card-title">Auto Insurance</h4>
+                                <p class="card-text text-muted">Comprehensive protection for your vehicles on and off
+                                    the road, tailored to your driving habits.</p>
+                                <a href="quote.html" class="btn btn-outline-primary mt-2">Get Quote</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4 mb-4">
-                        <h4>Home</h4>
-                        <p>Protecting your most valuable asset against the unexpected.</p>
+                    <!-- Home Insurance -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <div class="fs-1 mb-3">🏠</div>
+                                <h4 class="h5 card-title">Home Insurance</h4>
+                                <p class="card-text text-muted">Protecting your most valuable asset and personal
+                                    belongings against the unexpected.</p>
+                                <a href="quote.html" class="btn btn-outline-primary mt-2">Get Quote</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4 mb-4">
-                        <h4>Life</h4>
-                        <p>Ensuring your family's financial security for the long term.</p>
+                    <!-- Life Insurance -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <div class="fs-1 mb-3">❤️</div>
+                                <h4 class="h5 card-title">Life Insurance</h4>
+                                <p class="card-text text-muted">Ensuring your family's financial security and peace of
+                                    mind for the long term.</p>
+                                <a href="quote.html" class="btn btn-outline-primary mt-2">Get Quote</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-dark text-light py-4 mt-auto">
-        <div class="container text-center">
-            <p class="mb-1">Pinnacle Shield Insurance</p>
-            <p class="small text-secondary">&copy; 2026 | 123 Insurance Way, New York, NY</p>
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>🛡️ Pinnacle Shield Insurance</h5>
+                    <p class="text-secondary">Protecting families since 1985. Headquartered in Hartford, CT.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-secondary text-decoration-none">Home</a></li>
+                        <li><a href="quote.html" class="text-secondary text-decoration-none">Get a Quote</a></li>
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="faq.html" class="text-secondary text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contact</h5>
+                    <p class="text-secondary mb-1">📧 info@pinnacleshield.com</p>
+                    <p class="text-secondary mb-1">📞 1-800-555-SHIELD</p>
+                    <p class="text-secondary">📍 250 Constitution Plaza, Hartford, CT 06103</p>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <p class="text-center text-secondary mb-0">&copy; 2026 Pinnacle Shield Insurance. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

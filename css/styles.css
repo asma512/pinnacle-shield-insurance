@@ -1,5 +1,8 @@
+
 /* CSS Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -20,7 +23,7 @@ body {
     background-position: center;
     color: white;
     padding: 100px 0;
-    min-height: 60vh;
+    min-height: 40vh;
 }
 
 /* Card Hover Effects */
@@ -30,19 +33,30 @@ body {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
 }
+
 .hidden {
-display: none;
+    display: none;
 }
 
-/* Media Query for mobile spacing */
+
+.page-title-section {
+    padding: 60px 0 20px 0;
+    /* Adjusts top space like the About page */
+}
+
+/* Tablet */
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 60px 20px;
-    }
-    .display-3 {
-        font-size: 2.5rem;
-    }
+.hero h1 {
+font-size: 1.8rem;
 }
-
+/* ... additional rules ... */
+}
+/* Mobile */
+@media (max-width: 480px) {
+.hero {
+padding: 30px 15px;
+}
+/* ... additional rules ... */
+}
