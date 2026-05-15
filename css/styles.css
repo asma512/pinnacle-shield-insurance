@@ -46,6 +46,82 @@ body {
     /* Adjusts top space like the About page */
 }
 
+@media print {
+    header, footer, #quoteForm, #step2Container, 
+    #btnSave, #btnReset, #btnPrint,
+    #savedQuotesSection{
+        display: none !important;
+    }
+    card.shadow-sm.mx-auto {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    #quoteResult {
+        display: block !important;
+    }
+
+    #quoteResult.d-none {
+        display: block !important;
+    }
+
+    body {
+        color: #000;
+        background: #fff;
+        font-size: 12pt;
+    }
+
+    .card {
+        border: 1px solid #333 !important;
+        box-shadow: none !important;
+    }
+
+    .card-header {
+        background: #333 !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    #breakdownTable {
+        border-collapse: collapse;
+    }
+
+    #breakdownTable th, 
+    #breakdownTable td {
+        border: 1px solid #333 !important;
+        padding: 8px;
+    }
+
+    .result-premium-box {
+        border: 1px solid #ccc;
+    }
+
+    #quoteResult::before {
+        content: "🛡️ Pinnacle Shield Insurance — Official Quote";
+        display: block;
+        text-align: center;
+        font-size: 18pt;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #333;
+    }
+
+    #quoteResult::after {
+        content: "This is a personalized estimate. Final rates may vary. Contact us at 1-800-SHIELD for more details.";
+        display: block;
+        text-align: center;
+        font-size: 9pt;
+        color: #666;
+        margin-top: 30px;
+        padding-top: 10px;
+        border-top: 1px solid #ccc;
+    }
+}
+
 /* Tablet */
 @media (max-width: 768px) {
 .hero h1 {
