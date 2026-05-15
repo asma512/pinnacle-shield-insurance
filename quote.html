@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get a Quote | Pinnacle Shield Insurance</title>
     <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-light">
+
+<body>
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="index.html">Pinnacle Shield Insurance</a>
+                <a class="navbar-brand" href="index.html">🛡️ Pinnacle Shield Insurance</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -32,7 +35,8 @@
 
     <main class="container py-5">
         <div class="text-center mb-5">
-            <h1 class="display-5 fw-bold">Get Your Insurance Quote</h1>
+
+            <h1 class="text-center mb-4">Get Your Insurance Quote</h1>
             <p class="text-muted">Complete the form below to receive a personalized quote in minutes.</p>
         </div>
 
@@ -43,19 +47,22 @@
                     <label class="form-label fw-bold mb-3">Step 1: Select Insurance Type</label>
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
-                            <input type="radio" class="btn-check" name="insuranceType" id="typeAuto" value="auto" autocomplete="off">
+                            <input type="radio" class="btn-check" name="insuranceType" id="typeAuto" value="auto"
+                                autocomplete="off">
                             <label class="btn btn-outline-primary w-100 py-3" for="typeAuto">
                                 <span class="fs-3 d-block">🚗</span> Auto Insurance
                             </label>
                         </div>
                         <div class="col-md-4">
-                            <input type="radio" class="btn-check" name="insuranceType" id="typeHome" value="home" autocomplete="off">
+                            <input type="radio" class="btn-check" name="insuranceType" id="typeHome" value="home"
+                                autocomplete="off">
                             <label class="btn btn-outline-primary w-100 py-3" for="typeHome">
                                 <span class="fs-3 d-block">🏠</span> Home Insurance
                             </label>
                         </div>
                         <div class="col-md-4">
-                            <input type="radio" class="btn-check" name="insuranceType" id="typeLife" value="life" autocomplete="off">
+                            <input type="radio" class="btn-check" name="insuranceType" id="typeLife" value="life"
+                                autocomplete="off">
                             <label class="btn btn-outline-primary w-100 py-3" for="typeLife">
                                 <span class="fs-3 d-block">❤️</span> Life Insurance
                             </label>
@@ -63,320 +70,336 @@
                     </div>
 
                     <div id="step2Container" class="hidden">
-                    <hr class="my-4">
-                    <!-- Step 2: Dynamic Form Fields -->
-                    
-                    <label class="form-label fw-bold mb-3">Step 2: Enter Your Details</label>
-                    <!-- Auto Insurance Fields -->
-                    <div id="autoFields">
-                        <h5 class="mb-3 text-primary">Auto Insurance Details</h5>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="fullName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="fullName" required minlength="2">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="age" class="form-label">Age</label>
-                                <input type="number" class="form-control" id="age" required min="16" max="100">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="zipCode" class="form-label">ZIP Code</label>
-                                <input type="text" class="form-control" id="zipCode" required pattern="\d{5}">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="vehicleYear" class="form-label">Vehicle Year</label>
-                                <input type="number" class="form-control" id="vehicleYear" required min="1990" max="2026">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="vehicleMake" class="form-label">Vehicle Make</label>
-                                <select class="form-select" id="vehicleMake" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option>Toyota</option>
-                                    <option>Honda</option>
-                                    <option>Ford</option>
-                                    <option>BMW</option>
-                                    <option>Tesla</option>
-                                    <option>Other</option>
-                                </select>
-                            <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="vehicleModel" class="form-label">Vehicle Model</label>
-                                <input type="text" class="form-control" id="vehicleModel" required>
-                            <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="annualMileage" class="form-label">Annual Mileage</label>
-                                <select class="form-select" id="annualMileage" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option>Under 5,000</option>
-                                    <option>5,000–10,000</option>
-                                    <option>10,001–15,000</option>
-                                    <option>15,001–20,000</option>
-                                    <option>Over 20,000</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div> 
-                            <div class="col-md-6">
-                                <label for="drivingRecord" class="form-label">Driving Record</label>
-                                <select class="form-select" id="drivingRecord" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option>Clean</option>
-                                    <option>1 Ticket</option>
-                                    <option>2+ Tickets</option>
-                                    <option>Accident in Last 3 Years</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label d-block fw-bold">Coverage Level</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="autoCoverage" id="autoBasic" value="basic" checked>
-                                    <label class="form-check-label" for="autoBasic">Basic</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="autoCoverage" id="autoStandard" value="standard">
-                                    <label class="form-check-label" for="autoStandard">Standard</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="autoCoverage" id="autoPremium" value="premium">
-                                    <label class="form-check-label" for="autoPremium">Premium</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <hr class="my-4">
+                        <!-- Step 2: Dynamic Form Fields -->
 
-                    <!-- Home Insurance Fields  -->
-                    <div id="homeFields" class="hidden">
-                        <h5 class="mb-3 text-primary">Home Insurance Details</h5>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="homeFullName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="homeFullName" minlength="2">
-                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="homeAge" class="form-label">Age</label>
-                                <input type="number" class="form-control" id="homeAge" min="18" max="100">
-                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="homeZip" class="form-label">ZIP Code</label>
-                                <input type="text" class="form-control" id="homeZip" pattern="\d{5}">
-                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="homeValue" class="form-label">Home Value</label>
-                                <input type="number" class="form-control" id="homeValue" min="50000">
-                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="yearBuilt" class="form-label">Year Built</label>
-                                <input type="number" class="form-control" id="yearBuilt" min="1900" max="2026">
-                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="sqFootage" class="form-label">Square Footage</label>
-                                <input type="number" class="form-control" id="sqFootage" min="500" max="10000">
-                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="constructionType" class="form-label">Construction Type</label>
-                                <select class="form-select" id="constructionType">
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option>Wood Frame</option>
-                                    <option>Brick</option>
-                                    <option>Concrete</option>
-                                    <option>Steel</option>
-                                </select>
-                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-6 d-flex align-items-end">
-                                <div class="mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="securitySystem">
-                                        <label class="form-check-label" for="securitySystem">Has Security System (Discount)</label>
+                        <label class="form-label fw-bold mb-3">Step 2: Enter Your Details</label>
+                        <!-- Auto Insurance Fields -->
+                        <div id="autoFields">
+                            <h5 class="mb-3 text-primary">Auto Insurance Details</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" required minlength="2">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="age" class="form-label">Age</label>
+                                    <input type="number" class="form-control" id="age" required min="16" max="100">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="zipCode" class="form-label">ZIP Code</label>
+                                    <input type="text" class="form-control" id="zipCode" required pattern="\d{5}">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="vehicleYear" class="form-label">Vehicle Year</label>
+                                    <input type="number" class="form-control" id="vehicleYear" required min="1990"
+                                        max="2026">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="vehicleMake" class="form-label">Vehicle Make</label>
+                                    <select class="form-select" id="vehicleMake" required>
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option>Toyota</option>
+                                        <option>Honda</option>
+                                        <option>Ford</option>
+                                        <option>BMW</option>
+                                        <option>Tesla</option>
+                                        <option>Other</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="vehicleModel" class="form-label">Vehicle Model</label>
+                                    <input type="text" class="form-control" id="vehicleModel" required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="annualMileage" class="form-label">Annual Mileage</label>
+                                    <select class="form-select" id="annualMileage" required>
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option>Under 5,000</option>
+                                        <option>5,000–10,000</option>
+                                        <option>10,001–15,000</option>
+                                        <option>15,001–20,000</option>
+                                        <option>Over 20,000</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="drivingRecord" class="form-label">Driving Record</label>
+                                    <select class="form-select" id="drivingRecord" required>
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option>Clean</option>
+                                        <option>1 Ticket</option>
+                                        <option>2+ Tickets</option>
+                                        <option>Accident in Last 3 Years</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label d-block fw-bold">Coverage Level</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="autoCoverage" id="autoBasic"
+                                            value="basic" checked>
+                                        <label class="form-check-label" for="autoBasic">Basic</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="fireSprinklers">
-                                        <label class="form-check-label" for="fireSprinklers">Has Fire Sprinklers (Discount)</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="autoCoverage"
+                                            id="autoStandard" value="standard">
+                                        <label class="form-check-label" for="autoStandard">Standard</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="autoCoverage"
+                                            id="autoPremium" value="premium">
+                                        <label class="form-check-label" for="autoPremium">Premium</label>
                                     </div>
                                 </div>
-                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label d-block fw-bold">Coverage Level</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="homeCoverage" id="homeBasic" value="basic" checked>
-                                    <label class="form-check-label" for="homeBasic">Basic</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="homeCoverage" id="homeStandard" value="standard">
-                                    <label class="form-check-label" for="homeStandard">Standard</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="homeCoverage" id="homePremium" value="premium">
-                                    <label class="form-check-label" for="homePremium">Premium</label>
-                                </div>
-                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Life Insurance Fields-->
-                    <div id="lifeFields" class="hidden">
-                        <h5 class="mb-3 text-primary">Life Insurance Details</h5>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="lifeFullName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="lifeFullName" minlength="2">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="lifeAge" class="form-label">Age</label>
-                                <input type="number" class="form-control" id="lifeAge" min="18" max="85">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="lifeZip" class="form-label">ZIP Code</label>
-                                <input type="text" class="form-control" id="lifeZip" pattern="\d{5}">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender">
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Non-binary</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label d-block">Smoker?</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="smoker" id="smokerYes" value="yes">
-                                    <label class="form-check-label" for="smokerYes">Yes</label>
+                        <!-- Home Insurance Fields  -->
+                        <div id="homeFields" class="hidden">
+                            <h5 class="mb-3 text-primary">Home Insurance Details</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="homeFullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="homeFullName" minlength="2">
+                                    <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="smoker" id="smokerNo" value="no" checked>
-                                    <label class="form-check-label" for="smokerNo">No</label>
+                                <div class="col-md-3">
+                                    <label for="homeAge" class="form-label">Age</label>
+                                    <input type="number" class="form-control" id="homeAge" min="18" max="100">
+                                    <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="coverageAmount" class="form-label">Coverage Amount</label>
-                                <select class="form-select" id="coverageAmount">
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option>$100,000</option>
-                                    <option>$250,000</option>
-                                    <option>$500,000</option>
-                                    <option>$1,000,000</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exercise" class="form-label">Exercise Frequency</label>
-                                <select class="form-select" id="exercise">
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option>Rarely</option>
-                                    <option>1–2 times/week</option>
-                                    <option>3–4 times/week</option>
-                                    <option>5+ times/week</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-6 d-flex align-items-end">
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" id="preExisting">
-                                    <label class="form-check-label" for="preExisting">Pre-existing Conditions</label>
+                                <div class="col-md-3">
+                                    <label for="homeZip" class="form-label">ZIP Code</label>
+                                    <input type="text" class="form-control" id="homeZip" pattern="\d{5}">
+                                    <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label d-block fw-bold">Coverage Level</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="lifeCoverage" id="lifeBasic" value="basic" checked>
-                                    <label class="form-check-label" for="lifeBasic">Basic</label>
+                                <div class="col-md-4">
+                                    <label for="homeValue" class="form-label">Home Value</label>
+                                    <input type="number" class="form-control" id="homeValue" min="50000">
+                                    <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="lifeCoverage" id="lifeStandard" value="standard">
-                                    <label class="form-check-label" for="lifeStandard">Standard</label>
+                                <div class="col-md-4">
+                                    <label for="yearBuilt" class="form-label">Year Built</label>
+                                    <input type="number" class="form-control" id="yearBuilt" min="1900" max="2026">
+                                    <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="lifeCoverage" id="lifePremium" value="premium">
-                                    <label class="form-check-label" for="lifePremium">Premium</label>
+                                <div class="col-md-4">
+                                    <label for="sqFootage" class="form-label">Square Footage</label>
+                                    <input type="number" class="form-control" id="sqFootage" min="500" max="10000">
+                                    <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="invalid-feedback"></div>
+                                <div class="col-md-6">
+                                    <label for="constructionType" class="form-label">Construction Type</label>
+                                    <select class="form-select" id="constructionType">
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option>Wood Frame</option>
+                                        <option>Brick</option>
+                                        <option>Concrete</option>
+                                        <option>Steel</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-end">
+                                    <div class="mb-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="securitySystem">
+                                            <label class="form-check-label" for="securitySystem">Has Security System
+                                                (Discount)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="fireSprinklers">
+                                            <label class="form-check-label" for="fireSprinklers">Has Fire Sprinklers
+                                                (Discount)</label>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label d-block fw-bold">Coverage Level</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="homeCoverage" id="homeBasic"
+                                            value="basic" checked>
+                                        <label class="form-check-label" for="homeBasic">Basic</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="homeCoverage"
+                                            id="homeStandard" value="standard">
+                                        <label class="form-check-label" for="homeStandard">Standard</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="homeCoverage"
+                                            id="homePremium" value="premium">
+                                        <label class="form-check-label" for="homePremium">Premium</label>
+                                    </div>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mt-5">
-                        <button type="submit" class="btn btn-primary btn-lg w-100">Calculate My Quote</button>
+                        <!-- Life Insurance Fields-->
+                        <div id="lifeFields" class="hidden">
+                            <h5 class="mb-3 text-primary">Life Insurance Details</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="lifeFullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="lifeFullName" minlength="2">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lifeAge" class="form-label">Age</label>
+                                    <input type="number" class="form-control" id="lifeAge" min="18" max="85">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lifeZip" class="form-label">ZIP Code</label>
+                                    <input type="text" class="form-control" id="lifeZip" pattern="\d{5}">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" id="gender">
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Non-binary</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label d-block">Smoker?</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="smoker" id="smokerYes"
+                                            value="yes">
+                                        <label class="form-check-label" for="smokerYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="smoker" id="smokerNo"
+                                            value="no" checked>
+                                        <label class="form-check-label" for="smokerNo">No</label>
+                                    </div>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="coverageAmount" class="form-label">Coverage Amount</label>
+                                    <select class="form-select" id="coverageAmount">
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option>$100,000</option>
+                                        <option>$250,000</option>
+                                        <option>$500,000</option>
+                                        <option>$1,000,000</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exercise" class="form-label">Exercise Frequency</label>
+                                    <select class="form-select" id="exercise">
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option>Rarely</option>
+                                        <option>1–2 times/week</option>
+                                        <option>3–4 times/week</option>
+                                        <option>5+ times/week</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-end">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="preExisting">
+                                        <label class="form-check-label" for="preExisting">Pre-existing
+                                            Conditions</label>
+                                    </div>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label d-block fw-bold">Coverage Level</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="lifeCoverage" id="lifeBasic"
+                                            value="basic" checked>
+                                        <label class="form-check-label" for="lifeBasic">Basic</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="lifeCoverage"
+                                            id="lifeStandard" value="standard">
+                                        <label class="form-check-label" for="lifeStandard">Standard</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="lifeCoverage"
+                                            id="lifePremium" value="premium">
+                                        <label class="form-check-label" for="lifePremium">Premium</label>
+                                    </div>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">Calculate My Quote</button>
+                        </div>
                     </div>
-                </div>
                 </form>
             </div>
         </div>
 
         <!-- Results Section -->
         <<!-- Results Section (Initially Hidden) -->
-<!-- 1. The Result Card (Hidden by default, shown after calculation) -->
-<div id="quoteResult" class="mt-5 d-none">
-    <div class="card border-success shadow">
-        <div class="card-header bg-success text-white">
-            <h3 class="mb-0">Your Personalized Quote Results</h3>
-        </div>
-        <div class="card-body">
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <h5>Customer: <span id="resName" class="fw-normal"></span></h5>
-                    <h5>Policy Type: <span id="resType" class="fw-normal"></span></h5>
+            <!-- 1. The Result Card (Hidden by default, shown after calculation) -->
+            <div id="quoteResult" class="mt-5 d-none">
+                <div class="card border-success shadow">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="mb-0">Your Personalized Quote Results</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h5>Customer: <span id="resName" class="fw-normal"></span></h5>
+                                <h5>Policy Type: <span id="resType" class="fw-normal"></span></h5>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <h2 class="text-success mb-0" id="resMonthly"></h2>
+                                <p class="text-muted">Monthly Premium</p>
+                                <h4 class="text-secondary" id="resAnnual"></h4>
+                                <p class="text-muted small">Annual Total</p>
+                            </div>
+                        </div>
+
+                        <h5 class="border-bottom pb-2">Factor Breakdown</h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="breakdownTable">
+                                <thead>
+                                    <tr>
+                                        <th>Factor</th>
+                                        <th>Your Info</th>
+                                        <th>Impact</th>
+                                    </tr>
+                                </thead>
+                                <tbody><!-- Rows generated by JS --></tbody>
+                            </table>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="button" id="btnSave" class="btn btn-success">Save Quote</button>
+                            <button type="button" id="btnPrint" class="btn btn-primary">Print Quote</button>
+                            <button type="button" id="btnReset" class="btn btn-outline-secondary">Get Another
+                                Quote</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 text-md-end">
-                    <h2 class="text-success mb-0" id="resMonthly"></h2>
-                    <p class="text-muted">Monthly Premium</p>
-                    <h4 class="text-secondary" id="resAnnual"></h4>
-                    <p class="text-muted small">Annual Total</p>
+            </div>
+
+            <!-- 2. The Saved Quotes Section (Outside so it stays visible) -->
+            <div id="savedQuotesSection" class="container mt-5 mb-5 d-none">
+                <h3><i class="bi bi-floppy"></i> Saved Quotes</h3>
+                <hr>
+                <div id="savedQuotesList" class="mt-3">
+                    <!-- JavaScript will inject cards here -->
                 </div>
             </div>
-
-            <h5 class="border-bottom pb-2">Factor Breakdown</h5>
-            <div class="table-responsive">
-                <table class="table table-striped" id="breakdownTable">
-                    <thead>
-                        <tr>
-                            <th>Factor</th>
-                            <th>Your Info</th>
-                            <th>Impact</th>
-                        </tr>
-                    </thead>
-                    <tbody><!-- Rows generated by JS --></tbody>
-                </table>
-            </div>
-
-            <div class="text-center mt-4">
-                <button type="button" id="btnSave" class="btn btn-success">Save Quote</button>
-                <button type="button" id="btnPrint" class="btn btn-primary">Print Quote</button>
-                <button type="button" id="btnReset" class="btn btn-outline-secondary">Get Another Quote</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 2. The Saved Quotes Section (Outside so it stays visible) -->
-<div id="savedQuotesSection" class="container mt-5 mb-5 d-none">
-    <h3><i class="bi bi-floppy"></i> Saved Quotes</h3>
-    <hr>
-    <div id="savedQuotesList" class="mt-3">
-        <!-- JavaScript will inject cards here -->
-    </div>
-</div>
     </main>
 
     <footer class="bg-dark text-light py-4">
@@ -388,8 +411,11 @@
     </footer>
 
     <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <!-- Custom JS -->
     <script src="js/quote.js"></script>
 </body>
+
 </html>

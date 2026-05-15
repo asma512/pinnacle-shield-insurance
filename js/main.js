@@ -30,3 +30,33 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+(function () {
+    var searchInput = document.getElementById('faq-search');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', function () {
+        var searchTerm = this.value.toLowerCase().trim();
+        var items = document.querySelectorAll('.accordion-item');
+        var noResults = document.getElementById('faq-no-results');
+        var visibleCount = 0;
+
+        items.forEach(function (item) {
+            var text = item.textContent.toLowerCase();
+            if (searchTerm === '' || text.indexOf(searchTerm) !== -1) {
+                item.style.display = '';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        if (noResults) {
+            if (visibleCount === 0 && searchTerm !== '') {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+    });
+})();
